@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equivalence Applier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Logical Equivalence Applier</h1>
+        <form method="POST">
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+            {% if warning %}
+                <div class="warning">{{ warning }}</div>
+            {% endif %}
+
+            <label for="formula">Formula</label>
+            <input type="text" id="formula" name="formula" value="{{ request.form.get('formula', '') }}" required>
+
+            <label for="operators">Operators (comma-separated)</label>
+            <input type="text" id="operators" name="operators" value="{{ request.form.get('operators', '') }}" required>
+
+            <label for="complexity">Complexity</label>
+            <input type="text" id="complexity" name="complexity" value="{{ request.form.get('complexity', '') }}" required>
+
+            <label for="depth">Depth</label>
+            <input type="text" id="depth" name="depth" value="{{ request.form.get('depth', '') }}" required>
+
+            <label for="show_unfiltered">Show Unfiltered Results</label>
+            <select id="show_unfiltered" name="show_unfiltered">
+                <option value="y" {% if request.form.get('show_unfiltered') == 'y' %}selected{% endif %}>Yes</option>
+                <option value="n" {% if request.form.get('show_unfiltered') == 'n' %}selected{% endif %}>No</option>
+            </select>
+
+            <label for="timeout">Timeout (seconds)</label>
+            <input type="text" id="timeout" name="timeout" value="{{ request.form.get('timeout', '') }}" required>
+
+            <button type="submit">Transform</button>
+        </form>
+
+        <div class="results">
+            {% if filtered %}
+                <h2>Filtered Results</h2>
+                {% for result in filtered %}
+                    <p>{{ result }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {% if unfiltered %}
+                <h2>Unfiltered Results</h2>
+                {% for result in unfiltered %}
+                    <p>{{ result }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

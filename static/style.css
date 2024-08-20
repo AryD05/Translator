@@ -1,0 +1,96 @@
+/* Define basic styling for the body element */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Center the main container and give it a nice box shadow */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style the header */
+h1 {
+    color: #333333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+/* Flexbox styling for the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Label styling */
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333333;
+}
+
+
+/* Input, select, and textarea styling */
+input, select, textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+/* Style the submit button */
+button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Hover effect for the submit button */
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Error message styling */
+.error {
+    color: red;
+    margin-bottom: 20px;
+}
+
+/* Warning message styling */
+.warning {
+    color: orange;
+    margin-bottom: 20px;
+}
+
+/* Styling for the results section */
+.results {
+    margin-top: 30px;
+}
+
+/* Header for the results */
+.results h2 {
+    color: #333333;
+}
+
+/* Styling for each result */
+.results p {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
