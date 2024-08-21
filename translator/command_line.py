@@ -1,3 +1,9 @@
+'''
+This module provides a command-line tool for generating and filtering equivalences for a given logical formula.
+'''
+
+
+
 import cmd
 import threading
 from itertools import chain, combinations
@@ -53,37 +59,43 @@ def parse_command(command: str) -> tuple:
 
     parts = command.split('"')
     if len(parts) != 3 or len(parts[1].strip()) == 0:
-        raise ValueError("Invalid formula format. Formula must be enclosed in double quotes e.g. transform \"A <-> B\" !,&,|,1,0 2.5 3 y 5.0")
-    
+        raise ValueError("Invalid formula format. Formula must be enclosed in double quotes e.g. transform \"A <-> B\" \\!,&,|,1,0 2.5 3 y 5.0")
+
     formula = parts[1].strip()
     remaining_parts = parts[2].strip().split()
-    
+
     if len(remaining_parts) != 5:
-        raise ValueError("Invalid command format. Check that all arguments are included correctly e.g. transform \"A <-> B\" !,&,|,1,0 2.5 3 y 5.0")
-    
-    operators = set(remaining_parts[0].split(','))
+        raise ValueError("Invalid command format. Check that all arguments are included correctly e.g. transform \"A <-> B\" \\!,&,|,1,0 2.5 3 y 5.0")
+
+    operators = set()
+    for op_str in remaining_parts[0].split(','):
+        if op_str == '!':
+            operators.add('!')
+        else:
+            operators.add(op_str)
+
     if not all(op in {'!', '&', '|', '->', '<->', 'X', 'F', 'G', 'U', 'R', '1', '0'} for op in operators):
         raise ValueError("Invalid operators. Use any combination of !, &, |, ->, <->, X, F, G, U, R, 1, 0")
-    
+
     try:
         complexity = float(remaining_parts[1])
     except ValueError:
         raise ValueError("Complexity must be a float.")
-    
+
     try:
         depth = int(remaining_parts[2])
     except ValueError:
         raise ValueError("Depth must be an integer.")
-    
+
     show_unfiltered = remaining_parts[3].lower()
     if show_unfiltered not in {'y', 'n'}:
         raise ValueError("Show unfiltered must be 'y' or 'n'.")
-    
+
     try:
         timeout = float(remaining_parts[4])
     except ValueError:
         raise ValueError("Timeout must be a float.")
-    
+
     return formula, operators, complexity, depth, show_unfiltered == 'y', timeout
 
 
@@ -96,9 +108,10 @@ class EquivalenceApplier(cmd.Cmd):
         """
         Generate and filter equivalences.
         Supported operators: !, &, |, ->, <->, X, F, G, U, R, 1 (truth), and 0 (falsity)
+        Please input ! as \!
 
         Input format: transform "formula" operators complexity depth show_unfiltered timeout
-        Example: transform "A <-> B" !,&,->,1 2.5 3 n 5.0
+        Example: transform "A <-> B" \!,&,->,1 2.5 3 n 5.0
         """
 
         if not arg:
@@ -171,15 +184,14 @@ def run_transform_command():
     '''
     Runs the transform command from the command line.
 
-    This function initializes the EquivalenceApplier and processes
+    This function initialises the EquivalenceApplier and processes
     the command line arguments to perform the transformation.
     It's designed to be called as an entry point for the
     translator_transform command.
     '''
     
     if len(sys.argv) != 7:
-        print("Error: Invalid command format.")
-        print("Usage: translator_transform \"formula\" operators complexity depth show_unfiltered timeout")
+        print("Invalid command format. Check that all arguments are included correctly e.g. transform \"A <-> B\" \\!,&,|,1,0 2.5 3 y 5.0")
         return
 
     try:

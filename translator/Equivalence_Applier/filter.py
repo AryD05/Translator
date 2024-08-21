@@ -6,7 +6,7 @@ It ensures that only formulae containing specified operators are included in the
 
 
 from typing import List, Set
-from Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Finally, Globally, Until, Release
+from ..Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Finally, Globally, Until, Release
 
 
 def filter_equivalences(equivalences: List[Formula], allowed_operators: Set[str]) -> List[Formula]:
