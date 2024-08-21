@@ -16,12 +16,12 @@ import os
 
 
 def create_app():
-    """
+    '''
     Creates and configures the Flask application.
 
     Returns:
         Flask: The configured Flask application.
-    """
+    '''
     
     base_dir = os.path.abspath(os.path.dirname(__file__))
     
@@ -39,14 +39,14 @@ def create_app():
 
 
     def index():
-        """
+        '''
         Handle the main page of the web interface.
         - GET: Renders the input form.
         - POST: Processes the form data, applies logical equivalences, and returns the results.
 
         Returns:
             - The rendered HTML template with error messages or results if applicable.
-        """
+        '''
         
         if request.method == 'POST':
             # Construct a command string from the form inputs
@@ -70,10 +70,11 @@ def create_app():
             exception = []
 
             def run_apply_equivalences():
-                """
+                '''
                 Run the equivalence application function in a separate thread.
                 Stores the result in the 'result' list or any exception in the 'exception' list.
-                """
+                '''
+                
                 try:
                     result.append(apply_equivalences(formula, complexity, depth))
                 except Exception as e:
@@ -106,7 +107,7 @@ def create_app():
             if len(filtered_equivalents) == 0:
                 # Render the form with a message if no results are found after filtering
                 return render_template('index.html', error="No equivalent statements generated after filtering.", warning=warning_message, unfiltered=unfiltered_results)
-            
+
             # Render the form with the filtered and unfiltered results
             filtered_results = [eq._str() for eq in filtered_equivalents]
             return render_template('index.html', filtered=filtered_results, unfiltered=unfiltered_results, warning=warning_message)

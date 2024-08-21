@@ -1,9 +1,9 @@
-"""
+'''
 This module defines classes for representing and manipulating logical formulas. 
 It includes an enumeration for different logical operations and various classes 
 for each type of logical formula (e.g., AND, OR, NOT). Each class can generate 
 string and representation forms of the formula, as well as identify its operation type.
-"""
+'''
 
 
 
@@ -11,10 +11,10 @@ from enum import Enum, auto
 
 
 class Operation(Enum):
-    """
+    '''
     Enumeration for logical operations. Each operation corresponds to a specific 
     logical operator used in formulas.
-    """
+    '''
 
     VARIABLE = auto()
     NOT = auto()
@@ -32,11 +32,11 @@ class Operation(Enum):
 
 
 class Formula:
-    """
+    '''
     Base class for all logical formulas. Provides methods to generate string 
     and representation forms of formulas. Subclasses should override the _str 
     and _repr methods to provide specific behavior.
-    """
+    '''
 
     def __str__(self):
         pass
@@ -56,9 +56,9 @@ class Formula:
 
 
 class Variable(Formula):
-    """
+    '''
     Class representing a logical variable in a formula.
-    """
+    '''
 
     def __init__(self, name):
         self.name = name
@@ -74,9 +74,9 @@ class Variable(Formula):
 
 
 class Truth(Formula):
-    """
+    '''
     Class representing a truth value (True) in a formula.
-    """
+    '''
 
     def _str(self, parent_code=0):
         return '1'
@@ -89,9 +89,9 @@ class Truth(Formula):
 
 
 class Falsity(Formula):
-    """
+    '''
     Class representing a falsity value (False) in a formula.
-    """
+    '''
 
     def _str(self, parent_code=0):
         return '0'
@@ -104,9 +104,9 @@ class Falsity(Formula):
 
 
 class Not(Formula):
-    """
+    '''
     Class representing a negation operation in a formula.
-    """
+    '''
 
     def __init__(self, operand):
         self.operand = operand
@@ -122,9 +122,9 @@ class Not(Formula):
 
 
 class And(Formula):
-    """
+    '''
     Class representing a logical AND operation in a formula.
-    """
+    '''
 
     def __init__(self, left, right):
         self.left = left
@@ -147,9 +147,9 @@ class And(Formula):
 
 
 class Or(Formula):
-    """
+    '''
     Class representing a logical OR operation in a formula.
-    """
+    '''
 
     def __init__(self, left, right):
         self.left = left
@@ -172,9 +172,9 @@ class Or(Formula):
 
 
 class Implication(Formula):
-    """
+    '''
     Class representing a logical implication (->) in a formula.
-    """
+    '''
 
     def __init__(self, left, right):
         self.left = left
@@ -194,9 +194,9 @@ class Implication(Formula):
 
 
 class Biconditional(Formula):
-    """
+    '''
     Class representing a logical biconditional (<->) in a formula.
-    """
+    '''
 
     def __init__(self, left, right):
         self.left = left
@@ -216,9 +216,9 @@ class Biconditional(Formula):
 
 
 class Next(Formula):
-    """
+    '''
     Class representing the temporal 'Next' (X) operator in a formula.
-    """
+    '''
 
     def __init__(self, operand):
         self.operand = operand
@@ -234,9 +234,9 @@ class Next(Formula):
 
 
 class Finally(Formula):
-    """
+    '''
     Class representing the temporal 'Finally' (F) operator in a formula.
-    """
+    '''
 
     def __init__(self, operand):
         self.operand = operand
@@ -252,9 +252,9 @@ class Finally(Formula):
 
 
 class Globally(Formula):
-    """
+    '''
     Class representing the temporal 'Globally' (G) operator in a formula.
-    """
+    '''
      
     def __init__(self, operand):
         self.operand = operand
@@ -270,9 +270,9 @@ class Globally(Formula):
 
 
 class Until(Formula):
-    """
+    '''
     Class representing the temporal 'Until' (U) operator in a formula.
-    """
+    '''
 
     def __init__(self, left, right):
         self.left = left
@@ -291,9 +291,9 @@ class Until(Formula):
 
 
 class Release(Formula):
-    """
+    '''
     Class representing the temporal 'Release' (R) operator in a formula.
-    """
+    '''
     
     def __init__(self, left, right):
         self.left = left

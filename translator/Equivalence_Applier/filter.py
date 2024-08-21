@@ -1,7 +1,7 @@
-"""
+'''
 This module provides functionality to filter equivalences based on allowed operators.
 It ensures that only formulae containing specified operators are included in the result.
-"""
+'''
 
 
 
@@ -10,13 +10,13 @@ from ..Formula.structure import Formula, Variable, Not, And, Or, Implication, Bi
 
 
 def filter_equivalences(equivalences: List[Formula], allowed_operators: Set[str]) -> List[Formula]:
-    """
+    '''
     Filter a list of equivalences based on allowed operators.
 
     @param equivalences: A list of formulae to filter
     @param allowed_operators: A set of allowed operator symbols
     @return: A list of formulae containing only allowed operators
-    """
+    '''
     
 
     def is_allowed(formula: Formula) -> bool:
@@ -49,6 +49,11 @@ def filter_equivalences(equivalences: List[Formula], allowed_operators: Set[str]
         else:
             return False
 
+    print(f"Filtering {len(equivalences)} equivalences with allowed operators: {allowed_operators}")
+
 
     filtered_equivalences = [eq for eq in equivalences if is_allowed(eq)]
+
+    print(f"Filtered to {len(filtered_equivalences)} equivalences")
+
     return filtered_equivalences

@@ -1,7 +1,7 @@
-"""
+'''
 This module provides functionality to parse logical formulae from string expressions.
 It supports various logical operators and temporal logic operators.
-"""
+'''
 
 
 
@@ -9,21 +9,21 @@ from .structure import Variable, Not, And, Or, Implication, Biconditional, Truth
 
 
 def parse_formula(expression):
-    """
+    '''
     Parse a string expression into a Formula object.
 
     @param expression: A string representing a logical formula
     @return: A Formula object representing the parsed expression
-    """
+    '''
 
 
     def parse_expression(expression):
-        """
+        '''
         Recursively parse a string expression into a Formula object.
 
         @param expression: A string representing a logical formula or subformula
         @return: A Formula object representing the parsed expression
-        """
+        '''
 
         expression = expression.strip()
         if expression.startswith('(') and expression.endswith(')'):
@@ -74,13 +74,13 @@ def parse_formula(expression):
     
     
     def split_expression(expression, op):
-        """
+        '''
         Split an expression by a given operator, respecting parentheses.
 
         @param expression: The expression to split
         @param op: The operator to split on
         @return: A list of subexpressions
-        """
+        '''
         
         level = 0
         split_index = -1

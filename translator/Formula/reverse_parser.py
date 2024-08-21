@@ -1,7 +1,7 @@
-"""
+'''
 This module provides functionality to parse Formula objects from their string representations.
 It is primarily used for internal testing purposes.
-"""
+'''
 
 
 
@@ -9,21 +9,21 @@ from .structure import Variable, Not, And, Or, Implication, Biconditional, Truth
 
 
 def parse(expression):
-    """
+    '''
     Parse a string representation of a Formula object into an actual Formula object.
 
     @param expression: A string representation of a Formula object
     @return: The corresponding Formula object
-    """
+    '''
 
 
     def safe_eval(expr):
-        """
+        '''
         Safely evaluate a string expression to create a Formula object.
 
         @param expr: A string expression representing a Formula
         @return: The corresponding Formula object
-        """
+        '''
         
         def variable(name):
             return Variable(name.strip("'"))

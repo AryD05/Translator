@@ -7,8 +7,8 @@ This module provides a command-line tool for generating and filtering equivalenc
 import cmd
 import threading
 from itertools import chain, combinations
-from Equivalence_Applier.filter import filter_equivalences
-from Equivalence_Applier.applier import apply_equivalences
+from .Equivalence_Applier.filter import filter_equivalences
+from .Equivalence_Applier.applier import apply_equivalences
 import sys
 
 
@@ -50,12 +50,12 @@ def check_dependencies(operators):
 
 
 def parse_command(command: str) -> tuple:
-    """
+    '''
     Parse a user command into its components.
 
     @param command: The user input command string
     @return: A tuple containing the parsed components (formula, operators, complexity, depth, show_unfiltered, timeout)
-    """
+    '''
 
     parts = command.split('"')
     if len(parts) != 3 or len(parts[1].strip()) == 0:
@@ -105,14 +105,14 @@ class EquivalenceApplier(cmd.Cmd):
     
 
     def do_transform(self, arg):
-        """
+        '''
         Generate and filter equivalences.
         Supported operators: !, &, |, ->, <->, X, F, G, U, R, 1 (truth), and 0 (falsity)
         Please input ! as \!
 
         Input format: transform "formula" operators complexity depth show_unfiltered timeout
         Example: transform "A <-> B" \!,&,->,1 2.5 3 n 5.0
-        """
+        '''
 
         if not arg:
             print("Please provide arguments. Use 'help transform' for usage information.")
@@ -169,12 +169,12 @@ class EquivalenceApplier(cmd.Cmd):
 
 
     def do_exit(self, arg):
-        """
+        '''
         Exit the application.
 
         @param arg: Unused argument
         @return: True to signal the application to exit
-        """
+        '''
         
         print("Exiting...")
         return True

@@ -1,23 +1,23 @@
-"""
+'''
 This module contains functions for applying equivalences to logical formulae.
 It uses a complexity-based approach to generate equivalent formulae within specified constraints.
-"""
+'''
 
 
 
-from Formula.structure import Formula, And, Or, Not, Implication, Biconditional, Variable, Truth, Falsity, Next, Finally, Globally, Until, Release
-from Formula.parser import parse_formula
+from ..Formula.structure import Formula, And, Or, Not, Implication, Biconditional, Variable, Truth, Falsity, Next, Finally, Globally, Until, Release
+from ..Formula.parser import parse_formula
 from .equivalences import EQUIVALENCES
 from typing import List, Callable, Tuple
 
 
 def formula_complexity(formula: Formula) -> int:
-    """
+    '''
     Calculate the complexity of a given formula.
 
     @param formula: The formula to calculate complexity for
     @return: An integer representing the formula's complexity
-    """
+    '''
 
     if isinstance(formula, (Variable, Truth, Falsity)):
         return 1
@@ -29,7 +29,7 @@ def formula_complexity(formula: Formula) -> int:
 
 
 def apply_equivalences_to_subformulae(formula: Formula, equivalences: Tuple[Callable[[Formula], Formula]], max_depth: int, depth: int = 0) -> List[Formula]:
-    """
+    '''
     Apply equivalences to subformulae of the given formula up to a maximum depth.
 
     @param formula: The formula to apply equivalences to
@@ -37,7 +37,7 @@ def apply_equivalences_to_subformulae(formula: Formula, equivalences: Tuple[Call
     @param max_depth: The maximum depth to apply equivalences
     @param depth: The current depth in the recursion
     @return: A list of equivalent formulae
-    """
+    '''
     
     if depth > max_depth:
         return [formula]
@@ -65,14 +65,14 @@ def apply_equivalences_to_subformulae(formula: Formula, equivalences: Tuple[Call
 
 
 def apply_equivalences(formula_str: str, complexity_threshold: float, max_depth: int) -> List[Formula]:
-    """
+    '''
     Apply equivalences to a formula string, generating equivalent formulae within complexity constraints.
 
     @param formula_str: The input formula as a string
     @param complexity_threshold: The maximum allowed complexity as a factor of the original formula's complexity
     @param max_depth: The maximum depth to apply equivalences
     @return: A list of equivalent formulae
-    """
+    '''
     
     formula = parse_formula(formula_str)
     original_complexity = formula_complexity(formula)

@@ -1,11 +1,11 @@
-"""
+'''
 This module defines logical equivalences for formula transformations.
 It includes a set of equivalence functions and a tuple of all available equivalences.
-"""
+'''
 
 
 
-from Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Globally, Finally, Until, Release
+from ..Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Globally, Finally, Until, Release
 from typing import Tuple, Callable
 
 
