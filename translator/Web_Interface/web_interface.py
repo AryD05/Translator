@@ -14,6 +14,7 @@ from ..Equivalence_Applier.applier import apply_equivalences
 from ..command_line import check_dependencies, parse_command
 import os
 
+
 def create_app():
     """
     Creates and configures the Flask application.
@@ -35,6 +36,7 @@ def create_app():
     print(f"Static directory: {static_dir}")
     
     @app.route('/', methods=['GET', 'POST'])
+
 
     def index():
         """
@@ -112,7 +114,9 @@ def create_app():
         # Render the form for GET requests
         return render_template('index.html')
 
+
     return app
+
 
 def run_web_interface():
     '''
