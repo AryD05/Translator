@@ -1,38 +1,17 @@
-"""
-This module provides a command-line interface for applying logical equivalences to formulae.
-It allows users to transform formulae based on specified operators and constraints.
-"""
-
-
-
 import cmd
 import threading
 from itertools import chain, combinations
 from Equivalence_Applier.filter import filter_equivalences
 from Equivalence_Applier.applier import apply_equivalences
+import sys
 
 
 def powerset(iterable):
-    """
-    Generate the power set of an iterable.
-
-    @param iterable: The input iterable
-    @return: An iterator over all possible subsets of the input
-    """
-
-    "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
 
 
 def check_dependencies(operators):
-    """
-    Check which operators might not be reachable given the input set of operators.
-
-    @param operators: A set of allowed operators
-    @return: A set of potentially unreachable operators
-    """
-
     dependencies = {
         '!': [{'!'}],
         '&': [{'&'}, {'!', '|'}, {'!', '->'}],
@@ -109,10 +88,6 @@ def parse_command(command: str) -> tuple:
 
 
 class EquivalenceApplier(cmd.Cmd):
-    """
-    A command-line interface for applying equivalences to logical formulae.
-    """
-
     intro = "Welcome to the equivalence applier. Type help or ? to list commands.\n"
     prompt = "(equivalence) "
     
@@ -124,9 +99,6 @@ class EquivalenceApplier(cmd.Cmd):
 
         Input format: transform "formula" operators complexity depth show_unfiltered timeout
         Example: transform "A <-> B" !,&,->,1 2.5 3 n 5.0
-
-        Check that formulae are inputted correctly. The tool will not output anything meaningful if formulae are incorrectly input.
-        Formulae should be surrounded by a single set of brackets, and should use the operators specified above with or without whitespace.
         """
 
         if not arg:
@@ -191,6 +163,39 @@ class EquivalenceApplier(cmd.Cmd):
         @return: True to signal the application to exit
         """
         
-        "Exit the tool"
         print("Exiting...")
         return True
+    
+
+def run_transform_command():
+    '''
+    Runs the transform command from the command line.
+
+    This function initializes the EquivalenceApplier and processes
+    the command line arguments to perform the transformation.
+    It's designed to be called as an entry point for the
+    translator_transform command.
+    '''
+    
+    if len(sys.argv) != 7:
+        print("Error: Invalid command format.")
+        print("Usage: translator_transform \"formula\" operators complexity depth show_unfiltered timeout")
+        return
+
+    try:
+        formula = sys.argv[1]
+        operators = sys.argv[2]
+        complexity = sys.argv[3]
+        depth = sys.argv[4]
+        show_unfiltered = sys.argv[5]
+        timeout = sys.argv[6]
+
+        command = f'transform "{formula}" {operators} {complexity} {depth} {show_unfiltered} {timeout}'
+        cmd = EquivalenceApplier()
+        cmd.onecmd(command)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+
+if __name__ == "__main__":
+    run_transform_command()
