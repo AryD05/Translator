@@ -59,13 +59,13 @@ def parse_command(command: str) -> tuple:
 
     parts = command.split('"')
     if len(parts) != 3 or len(parts[1].strip()) == 0:
-        raise ValueError("Invalid formula format. Formula must be enclosed in double quotes e.g. transform \"A <-> B\" \\!,&,|,1,0 2.5 3 y 5.0")
+        raise ValueError("Invalid formula format. Formula must be enclosed in double quotes e.g. transform \"A <-> B\" ->,&,1,0 2.5 3 y 5.0")
 
     formula = parts[1].strip()
     remaining_parts = parts[2].strip().split()
 
     if len(remaining_parts) != 5:
-        raise ValueError("Invalid command format. Check that all arguments are included correctly e.g. transform \"A <-> B\" \\!,&,|,1,0 2.5 3 y 5.0")
+        raise ValueError("Invalid command format. Check that all arguments are included correctly e.g. transform \"A <-> B\" ->,&,1,0 2.5 3 y 5.0")
 
     operators = set()
     for op_str in remaining_parts[0].split(','):
@@ -108,7 +108,7 @@ class EquivalenceApplier(cmd.Cmd):
         '''
         Generate and filter equivalences.
         Supported operators: !, &, |, ->, <->, X, F, G, U, R, 1 (truth), and 0 (falsity)
-        Please input ! as \!
+        Please input ! and | as \! and \|
 
         Input format: transform "formula" operators complexity depth show_unfiltered timeout
         Example: transform "A <-> B" \!,&,->,1 2.5 3 n 5.0
