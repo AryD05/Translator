@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "translator_AryD05"
+version = "1.0"
+authors = [
+    { name = "Aryan Daga", email = "aryandaga@hotmail.com" },
+]
+description = "LTL Logical equivalence generator and filter - inc. website and command line interface. Designed for use in a GR(1) context in Spectra, but applications more generally too."
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "flask",
+    # Add other dependencies here
+]
+
+[project.urls]
+Homepage = "https://github.com/AryD05/Translator"
+
+[project.scripts]
+translator_transform = "translator.command_line:run_transform_command"
+translator_launch = "translator.Web_Interface.web_interface:run_web_interface"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["translator*"]
+
+[tool.setuptools.package-data]
+"translator.Web_Interface" = ["templates/*", "static/*"]

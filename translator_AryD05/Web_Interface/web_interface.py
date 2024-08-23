@@ -1,6 +1,6 @@
 '''
 Web interface that mirrors the command line application.
-Note this has been made for Mac, and may not work with other operating systems.
+Note this interface has been made with and for Mac, and may need to be edited to work with other operating systems.
 
 Run python3 web_interface.py from command line to run, and then open http://127.0.0.1:8080/ on a local browser.
 '''
