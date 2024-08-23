@@ -1,5 +1,5 @@
 build/
-translator.egg-info/
+translator_AryD05.egg-info/
 */__pycache__/
 __pycache__/
 settings.json
