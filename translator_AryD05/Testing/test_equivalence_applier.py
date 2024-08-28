@@ -1,4 +1,4 @@
-from Equivalence_Applier.applier import apply_equivalences
+from ..Equivalence_Applier.applier import apply_equivalences
 
 
 def test_equivalence_applier(formula_str: str):

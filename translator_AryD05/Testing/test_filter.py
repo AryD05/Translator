@@ -1,5 +1,5 @@
-from Equivalence_Applier.applier import apply_equivalences
-from Equivalence_Applier.filter import filter_equivalences
+from ..Equivalence_Applier.applier import apply_equivalences
+from ..Equivalence_Applier.filter import filter_equivalences
 
 
 def test_filter(formula_str: str):

@@ -1,6 +1,6 @@
 # Translator LTL: Logical Equivalence Generator and Filter
 
-This project provides a tool for generating and filtering logical equivalences for Linear Temporal Logic (LTL) formulas. It includes both a web interface and a command-line application. While designed primarily for use in a GR(1) context in Spectra, it has broader applications as well.
+This project provides a tool for generating and filtering logically equivalent formulae in Linear Temporal Logic (LTL). It includes both a web interface and a command-line application. While designed primarily for use in a GR(1) context in Spectra, it has broader applications as well.
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -12,9 +12,11 @@ This project provides a tool for generating and filtering logical equivalences f
    - [Flags Explained](#flags-explained)
    - [Supported Operators](#supported-operators)
 3. [Functionalities](#functionalities)
-4. [Important Notes](#important-notes)
-5. [Testing](#testing)
-6. [Project Structure](#project-structure)
+   - [Core Functionalities](#core-functionalities)
+   - [Additional Functionalities](#additional-functionalities)
+4. [Testing](#testing)
+5. [Project Structure](#project-structure)
+6. [Notes](#notes)
 
 ## Installation
 
@@ -43,11 +45,11 @@ This will install the project and its dependencies based on the `pyproject.toml`
 
 At its core, this tool generates and filters logical equivalences for Linear Temporal Logic (LTL) formulae. It can:
 
-1. Generate equivalent LTL formulas based on a given input formula.
+1. Generate equivalent LTL formulae based on a given input formula.
 2. Filter these equivalences based on specified logical operators.
 3. Apply various complexity and depth constraints to the generation process.
 
-The tool does not verify the correctness of input formulas. Ensure your input is valid to avoid nonsensical outputs.
+The tool does not verify the correctness of input formulae. Ensure your input is valid to avoid nonsensical outputs.
 
 ### Web Interface
 
@@ -76,7 +78,7 @@ translator_transform "formula" operators complexity depth show_unfiltered timeou
 
 #### Flags Explained
 
-- **Complexity**: Controls the intricacy of generated equivalences. Higher values allow more complex transformations but increase processing time.
+- **Complexity**: Controls the intricacy of generated equivalences relative to the complexity of the input formula. Higher values allow more complex transformations but increase processing time.
 - **Depth**: Limits the recursive depth of equivalence generation. Higher values explore more possibilities but may significantly increase computation time.
 - **Show Unfiltered**: When set to 'y', displays all generated equivalences before applying operator-based filtering.
 - **Timeout**: Sets a time limit for the equivalence generation process to prevent excessively long computations.
@@ -85,6 +87,24 @@ translator_transform "formula" operators complexity depth show_unfiltered timeou
 
 - Propositional: ! (NOT), & (AND), | (OR), -> (IMPLIES), <-> (EQUIVALENT), 1 (TRUE), 0 (FALSE)
 - Temporal: X (NEXT), F (EVENTUALLY), G (GLOBALLY), U (UNTIL), R (RELEASE)
+
+## Functionalities
+
+### Core Functionalities
+
+1. Equivalence Generation: Produces logically equivalent formulae based on input LTL expressions.
+2. Filtering: Filters generated equivalences to include only specified logical operators.
+3. Complexity and Depth Control: Allows users to adjust the intricacy and recursion depth of equivalence generation.
+4. Command line & web interface support: Offers both web-based and command-line interfaces for versatile usage.
+
+### Additional Functionalities
+
+1. Formula Parsing and Validation: Includes a robust parser for LTL formulae, ensuring correct interpretation of input.
+2. Compile-time operator reachability check: Warns users if specified operators might not be sufficient to reach all possible operator inputs, and outputs the operators which might not be reachable.
+3. Timeout Mechanism: Prevents excessively long computations by setting a time limit on the generation process.
+4. Unfiltered Results Display: Option to view all generated equivalences before applying operator-based filtering.
+5. Unit Testing: Includes scripts to test individual components of the tool.
+6. Performance Testing: Includes a script to assess the efficiency of the equivalence generation process.
 
 ## Notes
 
