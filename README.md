@@ -11,14 +11,12 @@ This project provides a tool for generating and filtering logically equivalent f
    - [Parameters](#parameters)
    - [Flags Explained](#flags-explained)
    - [Supported Operators](#supported-operators)
-3. [Functionalities](#functionalities)
-   - [Core Functionalities](#core-functionalities)
    - [Additional Functionalities](#additional-functionalities)
-4. [Testing](#testing)
+3. [Testing](#testing)
    - [Test Components](#test-components)
    - [Running the Tests](#running-the-tests)
    - [Interactive Testing](#interactive-testing)
-5. [Project Structure](#project-structure)
+4. [Project Structure](#project-structure)
    - [Directory Descriptions](#test-components)
    - [Root Directory Files](#root-directory-files)
 
@@ -105,15 +103,6 @@ translator_transform "formula" operators complexity depth show_unfiltered timeou
 
 - Propositional: ! (NOT), & (AND), | (OR), -> (IMPLIES), <-> (EQUIVALENT), 1 (TRUE), 0 (FALSE)
 - Temporal: X (NEXT), F (EVENTUALLY), G (GLOBALLY), U (UNTIL), R (RELEASE)
-
-## Functionalities
-
-### Core Functionalities
-
-1. Equivalence Generation: Produces logically equivalent formulae based on input LTL expressions.
-2. Filtering: Filters generated equivalences to include only specified logical operators.
-3. Complexity and Depth Control: Allows users to adjust the intricacy and recursion depth of equivalence generation.
-4. Command line & web interface support: Offers both web-based and command-line interfaces for versatile usage.
 
 ### Additional Functionalities
 
