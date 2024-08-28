@@ -15,27 +15,39 @@ This project provides a tool for generating and filtering logically equivalent f
    - [Core Functionalities](#core-functionalities)
    - [Additional Functionalities](#additional-functionalities)
 4. [Testing](#testing)
+   - [Test Components](#test-components)
+   - [Running the Tests](#running-the-tests)
+   - [Interactive Testing](#interactive-testing)
 5. [Project Structure](#project-structure)
-6. [Notes](#notes)
+   - [Directory Descriptions](#test-components)
+   - [Root Directory Files](#root-directory-files)
 
 ## Installation
 
 You can install this project in two ways:
 
 1. Clone the repository:
+```
 git clone https://github.com/AryD05/Translator.git
 cd Translator
+```
 
 2. Install using pip:
+```
 pip install -i https://test.pypi.org/simple/ translator-AryD05
+```
 
 The only dependency for this project is Flask, which is required to run the web application. To install Flask, run:
+```
 pip install flask
+```
 
 After installation, no additional setup is required. However, ensure you have Python 3.7 or later installed on your system.
 
 If you've cloned the repository and want to run the project from the source, you might need to install the project in editable mode:
+```
 pip install -e
+```
 
 This will install the project and its dependencies based on the `pyproject.toml` file.
 
@@ -51,11 +63,15 @@ At its core, this tool generates and filters logical equivalences for Linear Tem
 
 The tool does not verify the correctness of input formulae. Ensure your input is valid to avoid nonsensical outputs.
 
+Note: Both web application and command line application have been developed and tested on macOS. While they may work on other operating systems, full functionality is not guaranteed. Some adjustments might be necessary for Windows or Linux environments
+
 ### Web Interface
 
 To launch the web interface, use the following command:
 
+```
 translator_launch
+```
 
 This starts a Flask server hosting the web application. Open your web browser and navigate to `http://127.0.0.1:8080/` to access the interface.
 
@@ -63,7 +79,9 @@ This starts a Flask server hosting the web application. Open your web browser an
 
 To use the command-line interface, use the `translator_transform` command with the following syntax:
 
+```
 translator_transform "formula" operators complexity depth show_unfiltered timeout
+```
 
 #### Parameters
 
@@ -106,6 +124,135 @@ translator_transform "formula" operators complexity depth show_unfiltered timeou
 5. Unit Testing: Includes scripts to test individual components of the tool.
 6. Performance Testing: Includes a script to assess the efficiency of the equivalence generation process.
 
-## Notes
+## Testing
 
-Note: Both web application and command line application have been developed and tested on macOS. While they may work on other operating systems, full functionality is not guaranteed. Some adjustments might be necessary for Windows or Linux environments
+The project includes a comprehensive test suite to ensure the correctness and performance of various components. The tests are located in the `Testing` directory and cover different aspects of the application.
+
+### Test Components
+
+1. **Structure Tests** (`test_structure.py`): Verify the correctness of the basic structures used in the project.
+
+2. **Parser Tests** (`test_parser.py`): Ensure that the parser correctly interprets Linear Temporal Logic (LTL) formulae.
+
+3. **Equivalence Applier Tests** (`test_equivalence_applier.py`): Check the functionality of applying equivalences to LTL formulae.
+
+4. **Filter Tests** (`test_filter.py`): Validate the filtering mechanism for generated equivalences.
+
+5. **Equivalences Tests** (`test_equivalences.py`): Test the correctness of predefined equivalences.
+
+6. **Performance Tests** (`performance_test.py`): Evaluate the efficiency of the equivalence generation process.
+
+### Running the Tests
+
+To run all tests, navigate to the project root directory and execute the `test.py` file:
+
+```
+python test.py
+```
+
+This script will run through all test components, including:
+
+- Parser testing
+- Equivalence Applier testing
+- Filter testing
+- Equivalences testing
+- Performance testing
+
+The performance tests use a timeout mechanism to prevent excessively long computations. They evaluate the application's performance with various LTL formulae and operator sets.
+
+### Interactive Testing
+
+You can also test the application interactively using the command-line interface. To start the interactive shell, run:
+
+```python
+from translator.command_line import EquivalenceApplier
+EquivalenceApplier().cmdloop()
+```
+
+This will start an interactive session where you can input commands to generate and filter equivalences. Use the `transform` command with the following syntax:
+
+```
+transform "formula" operators complexity depth show_unfiltered timeout
+```
+
+For example:
+```
+transform "A <-> B" \!,&,|,1,0 2.5 3 y 5.0
+```
+
+This command will generate equivalences for the formula "A <-> B", using the operators !, &, |, 1, and 0, with a complexity of 2.5, a maximum depth of 3, showing unfiltered results, and a timeout of 5 seconds.
+
+## Project Structure
+
+The project is organized into several directories and files, each serving a specific purpose. Here's an overview of the project structure:
+
+```
+translator_AryD05/
+│
+├── Equivalence_Applier/
+│   ├── __init__.py
+│   ├── applier.py
+│   ├── equivalences.py
+│   └── filter.py
+│
+├── Formula/
+│   ├── __init__.py
+│   ├── parser.py
+│   ├── reverse_parser.py
+│   └── structure.py
+│
+├── Testing/
+│   ├── performance_test.py
+│   ├── test_equivalence_applier.py
+│   ├── test_equivalences.py
+│   ├── test_filter.py
+│   ├── test_parser.py
+│   └── test_structure.py
+│
+├── Web_Interface/
+│   ├── static/
+│   ├── templates/
+│   ├── __init__.py
+│   └── web_interface.py
+│
+├── __init__.py
+├── command_line.py
+├── test.py
+├── translator_AryD05.egg-info/
+├── .gitignore
+├── LICENSE.txt
+├── pyproject.toml
+└── README.md
+```
+
+### Directory Descriptions
+
+- **Equivalence_Applier/**: Contains the core logic for applying and filtering equivalences.
+  - `applier.py`: Implements the equivalence application algorithm.
+  - `equivalences.py`: Defines the set of logical equivalences used in the project.
+  - `filter.py`: Handles filtering of generated equivalences.
+
+- **Formula/**: Manages the parsing and structure of logical formulas.
+  - `parser.py`: Implements the parser for logical formulas.
+  - `reverse_parser.py`: Handles reverse parsing of logical structures.
+  - `structure.py`: Defines the structure of logical formulas.
+
+- **Testing/**: Contains all test files for various components of the project.
+  - Includes tests for equivalence applier, parser, filter, and performance.
+
+- **Web_Interface/**: Houses the web application components.
+  - `static/`: Contains static files like CSS for the web interface.
+  - `templates/`: Stores HTML templates for the web interface.
+  - `web_interface.py`: Implements the web application logic.
+
+### Root Directory Files
+
+- `__init__.py`: Marks the directory as a Python package.
+- `command_line.py`: Implements the command-line interface for the application.
+- `test.py`: Main test runner script.
+- `.gitignore`: Specifies intentionally untracked files to ignore.
+- `LICENSE.txt`: Contains the license information for the project.
+- `pyproject.toml`: Defines the project metadata and dependencies.
+- `README.md`: Provides an overview and documentation for the project.
+
+This structure organizes the project into logical components, separating core functionality, testing, and user interfaces (both web and command-line). It facilitates easy navigation and main  tenance of the codebase.
