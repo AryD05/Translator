@@ -207,7 +207,6 @@ translator_AryD05/
 ├── __init__.py
 ├── command_line.py
 ├── test.py
-├── translator_AryD05.egg-info/
 ├── .gitignore
 ├── LICENSE.txt
 ├── pyproject.toml
@@ -230,8 +229,8 @@ translator_AryD05/
   - Includes tests for equivalence applier, parser, filter, and performance.
 
 - **Web_Interface/**: Houses the web application components.
-  - `static/`: Contains static files like CSS for the web interface.
-  - `templates/`: Stores HTML templates for the web interface.
+  - `static/`: Contains a CSS static file for the web interface.
+  - `templates/`: Stores a HTML template for the web interface.
   - `web_interface.py`: Implements the web application logic.
 
 ### Root Directory Files
