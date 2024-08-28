@@ -62,7 +62,7 @@ To use the command-line interface, use the `translator_transform` command with t
 
 translator_transform "formula" operators complexity depth show_unfiltered timeout
 
-#### Parameters:
+#### Parameters
 
 1. `formula`: The LTL formula enclosed in quotes (e.g., "A <-> B")
 2. `operators`: Comma-separated list of allowed operators (e.g., \!,&,\|,->,<->,X,F,G,U,R,1,0)
@@ -73,14 +73,14 @@ translator_transform "formula" operators complexity depth show_unfiltered timeou
 5. `show_unfiltered`: 'y' to show unfiltered results, 'n' to hide them
 6. `timeout`: Float value setting the maximum execution time in seconds (e.g., 5.0)
 
-#### Flags Explained:
+#### Flags Explained
 
 - **Complexity**: Controls the intricacy of generated equivalences. Higher values allow more complex transformations but increase processing time.
 - **Depth**: Limits the recursive depth of equivalence generation. Higher values explore more possibilities but may significantly increase computation time.
 - **Show Unfiltered**: When set to 'y', displays all generated equivalences before applying operator-based filtering.
 - **Timeout**: Sets a time limit for the equivalence generation process to prevent excessively long computations.
 
-### Supported Operators:
+### Supported Operators
 
 - Propositional: ! (NOT), & (AND), | (OR), -> (IMPLIES), <-> (EQUIVALENT), 1 (TRUE), 0 (FALSE)
 - Temporal: X (NEXT), F (EVENTUALLY), G (GLOBALLY), U (UNTIL), R (RELEASE)
