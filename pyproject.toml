@@ -19,9 +19,9 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/AryD05/Translator_AryD05"
 
-[project.scripts]
-translator_transform = "translator_AryD05.command_line:run_transform_command"
+[project.entry-points."console_scripts"]
 translator_launch = "translator_AryD05.Web_Interface.web_interface:run_web_interface"
+translator_transform = "translator_AryD05.command_line:run_transform_command"
 
 [tool.setuptools.packages.find]
 where = ["."]
