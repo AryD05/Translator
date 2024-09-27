@@ -4,7 +4,7 @@ from Testing.test_equivalence_applier import test_equivalence_applier
 from Testing.test_filter import test_filter
 from Testing.test_equivalences import test_equivalences
 from Testing.performance_test import run_performance_tests
-from translator.command_line import EquivalenceApplier
+from translator_AryD05.command_line import EquivalenceApplier
 
 
 def main():
