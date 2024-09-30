@@ -5,8 +5,8 @@ It uses a complexity-based approach to generate equivalent formulae within speci
 
 
 
-from ..Formula.structure import Formula, And, Or, Not, Implication, Biconditional, Variable, Truth, Falsity, Next, Finally, Globally, Until, Release
-from ..Formula.parser import parse_formula
+from Formula.structure import Formula, And, Or, Not, Implication, Biconditional, Variable, Truth, Falsity, Next, Finally, Globally, Until, Release
+from Formula.parser import parse_formula
 from .equivalences import EQUIVALENCES
 from typing import List, Callable, Tuple
 

@@ -1,5 +1,5 @@
-from ..Formula.structure import Formula, Variable, And, Or, Not, Implication, Biconditional, Truth, Falsity, Next, Finally, Globally, Until, Release
-from ..Equivalence_Applier.equivalences import *  # Import all equivalences
+from Formula.structure import Formula, Variable, And, Or, Not, Implication, Biconditional, Truth, Falsity, Next, Finally, Globally, Until, Release
+from Equivalence_Applier.equivalences import *  # Import all equivalences
 
 
 def test_equivalences():

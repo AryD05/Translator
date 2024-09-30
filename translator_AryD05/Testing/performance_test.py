@@ -1,7 +1,7 @@
 import time
 import signal
 from functools import wraps
-from ..Equivalence_Applier.applier import apply_equivalences
+from Equivalence_Applier.applier import apply_equivalences
 
 
 def timeout(seconds):

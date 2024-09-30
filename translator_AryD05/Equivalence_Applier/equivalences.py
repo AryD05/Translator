@@ -5,7 +5,7 @@ It includes a set of equivalence functions and a tuple of all available equivale
 
 
 
-from ..Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Globally, Finally, Until, Release
+from Formula.structure import Formula, Variable, Not, And, Or, Implication, Biconditional, Truth, Falsity, Next, Globally, Finally, Until, Release
 from typing import Tuple, Callable
 
 

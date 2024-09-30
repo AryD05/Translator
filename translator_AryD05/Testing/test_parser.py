@@ -1,4 +1,4 @@
-from ..Formula.parser import parse_formula
+from Formula.parser import parse_formula
 
 
 def test_parser(formula_str: str):

@@ -1,4 +1,4 @@
-from ..Formula.structure import Variable, Not, And, Or, Implication, Truth, Falsity
+from Formula.structure import Variable, Not, And, Or, Implication, Truth, Falsity
 
 
 def test_structure():
